@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script><!-- Master file for aframe (== a-scene) -->
+    <script src="https://maumkt.ppdaicdn.com/js/aframe-ar.js"></script><!-- webcam/mobilecam --> 
+    <script src="https://mkwy.fr/js/play-all-model-animations.js"></script><!-- animation -->
+    <script src="https://mkwy.fr/js/aframe-orbit-controls.min.js"></script><!-- orbit cam around target -->
+    <script src="https://mkwy.fr/js/aframe-extras.js"></script><!-- cub-env-map -->
+  </head>
+  <body>
+<a-scene vr-mode-ui="enabled: false" embedded>
+     <a-assets>
+     <a-asset-item id="toy" src="public/toyDrummerSolo.glb"></a-asset-item>
+     </a-assets>
+     <a-entity 
+        gltf-model="#toy"
+        cube-env-map="path: https://mkwy.fr/assets/cube-env/; extension: jpg; reflectivity: 0.9;" 
+        play-all-model-animations >
+     </a-entity>
+      <a-entity camera look-controls  orbit-controls="target: 0 1 0; minDistance: 0.5; maxDistance: 60; initialPosition: 0 5 5"></a-entity>
+</a-scene>
+</body>
+</html>

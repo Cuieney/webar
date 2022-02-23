@@ -1,0 +1,13 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "editor.formatOnSave": true,
+  "liveServer.settings.https": {
+    "enable": true, //set it true to enable the feature.  
+    "cert": "/usr/local/etc/nginx/ssl/ppdai.com/ppdai.com.crt", //full path of the certificate  
+    "key": "/usr/local/etc/nginx/ssl/ppdai.com/ppdai.com.key", //full path of the private key  
+    "passphrase": "12345"
+  }  
+}

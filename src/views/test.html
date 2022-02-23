@@ -1,0 +1,157 @@
+<html>
+<script src='https://aframe.io/releases/1.1.0/aframe.min.js'></script>
+<script src="https://maumkt.ppdaicdn.com/js/aframe-ar-nft.js"></script>
+<script src="https://maumkt.ppdaicdn.com/js/aframe-physical.js"></script>
+<script src='https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js'></script>
+<script src="https://unpkg.com/aframe-cubemap-component@2.1.1/dist/aframe-cubemap-component.min.js"></script>
+
+<style>
+    .arjs-loader {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+    }
+</style>
+
+<body style='margin : 0px; overflow: hidden;'>
+
+    <a-scene embedded arjs inspector="url: https://maumkt.ppdaicdn.com/js/aframe-inspector.js"
+        cursor="rayOrigin: mouse; fuse: true" foo>
+
+
+        <a-assets>
+            <a-mixin id="ballMix" dynamic-body gltf-model="/public/model5/scene.gltf" scale="0.25 0.25 0.25"></a-mixin>
+            <a-mixin id="cube" event-set__grab="material.color: #FFEF4F" event-set__grabend="material.color: #F2E646"
+                event-set__hit="material.color: #F2E646" event-set__hitend="material.color: #EF2D5E"
+                event-set__mousedown="material.color: #FFEF4F" event-set__mouseenter="material.color: #F2E646"
+                event-set__mouseleave="material.color: #EF2D5E" event-set__mouseup="material.color: #F2E646"
+                material="color: #EF2D5E;"></a-mixin>
+            <img id="balltexture"
+                src="https://cdn.glitch.com/96535d07-cfdb-4bbf-b141-8b97f776d9f9%2Fballdimpled.png?v=1631725609500" />
+        </a-assets>
+
+        <!-- define a camera which will move according to the marker position -->
+
+        <a-marker preset='hiro'>
+            <a-entity id="total" position='0 -1 0'>
+                <a-entity id="ball" mixin="ballMix" position="1 5 1"> </a-entity>
+                <a-entity id="ball" mixin="ballMix" position="2 5 1"> </a-entity>
+                <a-entity id="ball" mixin="ballMix" position="3 5 1"> </a-entity>
+                <a-entity id="ball" mixin="ballMix" position="4 5 1"> </a-entity>
+
+                <a-box static-body visible="false" position="2 1 -1" width="5" height="1" depth="5" color="#4CC3D9">
+                </a-box>
+
+                <a-box static-body visible="false" position="-1 4 -1" width="1" height="5" depth="5" color="#4CC3D9">
+                </a-box>
+
+                <a-box static-body visible="false" position="5 4 -1" width="1" height="5" depth="5" color="#4CC3D9">
+                </a-box>
+
+                <a-box static-body visible="false" position="2 4 -4" width="5" height="5" depth="1" color="#4CC3D9">
+                </a-box>
+                <a-entity id="paw">
+                    <a-entity id="paw-cylinder" static-body position="0 5 0" mixin="cube"
+                        geometry="primitive: cylinder; height: 2; radius: 0.1"></a-entity>
+                    <a-entity id="paw-sphere" static-body position="0 3.806 -0.006" mixin="cube"
+                        constraint="target: #paw-cylinder;damping: 0.25;stiffness: 25;"
+                        geometry="primitive:box; width: 0.4; height: 0.4; depth: 0.4"></a-entity>
+                    <a-entity id="paw-bottom" position="-0.233 3.472 -0.036" rotation="0 0 -15"
+                        constraint="target: #paw-spher;damping: 0.25;stiffness: 25;">
+                        <a-entity static-body mixin="cube"
+                            geometry="primitive:box; width: 0.03; height: 0.4; depth: 0.03">
+                        </a-entity>
+                        <a-entity static-body mixin="cube" geometry="primitive: sphere; radius: 0.05"
+                            position="0.007 -0.175 0.000"></a-entity>
+                        <a-entity static-body mixin="cube"
+                            geometry="primitive:box; width: 0.03; height: 0.4; depth: 0.03" position="0.168 -0.340 0"
+                            rotation="0 0  50.000"></a-entity>
+                    </a-entity>
+
+                    <a-entity id="paw-bottom" position="0.238 3.466 -0.036" rotation="0 180 -15"
+                        constraint="target: #paw-spher;damping: 0.25;stiffness: 25;">
+                        <a-entity static-body mixin="cube"
+                            geometry="primitive:box; width: 0.03; height: 0.4; depth: 0.03">
+                        </a-entity>
+                        <a-entity static-body mixin="cube" geometry="primitive: sphere; radius: 0.05"
+                            position="0.007 -0.175 0.000"></a-entity>
+                        <a-entity static-body mixin="cube"
+                            geometry="primitive:box; width: 0.03; height: 0.4; depth: 0.03" position="0.168 -0.340 0"
+                            rotation="0 0  50.000"></a-entity>
+                    </a-entity>
+
+                    <a-entity id="paw-bottom" position="0.006 3.466 -0.262" rotation="0 -90 -15"
+                        constraint="target: #paw-spher;damping: 0.25;stiffness: 25;">
+                        <a-entity static-body mixin="cube"
+                            geometry="primitive:box; width: 0.03; height: 0.4; depth: 0.03">
+                        </a-entity>
+                        <a-entity static-body mixin="cube" geometry="primitive: sphere; radius: 0.05"
+                            position="0.007 -0.175 0.000"></a-entity>
+                        <a-entity static-body mixin="cube"
+                            geometry="primitive:box; width: 0.03; height: 0.4; depth: 0.03" position="0.168 -0.340 0"
+                            rotation="0 0  50.000"></a-entity>
+                    </a-entity>
+                    <a-entity id="paw-bottom" position="0.006 3.466 0.216" rotation="0 90 -15"
+                        constraint="target: #paw-spher;damping: 0.25;stiffness: 25;">
+                        <a-entity static-body mixin="cube"
+                            geometry="primitive:box; width: 0.03; height: 0.4; depth: 0.03">
+                        </a-entity>
+                        <a-entity static-body mixin="cube" geometry="primitive: sphere; radius: 0.05"
+                            position="0.007 -0.175 0.000"></a-entity>
+                        <a-entity static-body mixin="cube"
+                            geometry="primitive:box; width: 0.03; height: 0.4; depth: 0.03" position="0.168 -0.340 0"
+                            rotation="0 0  50.000"></a-entity>
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+        </a-marker>
+
+        <!-- <a-entity cubemap="folder: /public/Yokohama3/"></a-entity> -->
+        <!-- create your content here. just a box for now -->
+        <a-box position='0 0.5 0' material='opacity: 0.5;' id="boxxx"></a-box>
+        <a-sphere id="ball" shadow look-at="[camera]" material="color:orange;src:#balltexture" position="0.1 2.5 -1.023"
+            scale="0.5 0.5 0.5" dynamic-body radius="0.19"></a-sphere>
+        <a-box static-body width="20" height="20" depth="1" rotation="-90 0 0" visible="false" position="0 -0.5 0">
+        </a-box>
+
+        <a-entity camera position="0 0 9" look-controls></a-entity>
+
+
+    </a-scene>
+
+</body>
+<script>
+    AFRAME.registerComponent("foo", {
+        init: function () {
+            const text = document.querySelector("#boxxx")
+            // listen for clicks
+            this.el.addEventListener("click", e => {
+                // log the points
+                if (e.detail.intersection) {
+                    console.log(e.detail.intersection.point)
+                    let point = e.detail.intersection.point
+                    let pointString = point.x.toFixed(2) + ", " + point.y.toFixed(2) + ", " + point.z.toFixed(2);
+                    console.log("value", "Click at: " + pointString)
+                    text.setAttribute('position', { x: point.x.toFixed(2), y: point.y.toFixed(2), z: point.z.toFixed(2) })
+
+                }
+            })
+        }
+    })
+
+</script>
+
+</html>
